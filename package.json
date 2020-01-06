@@ -9,6 +9,8 @@
   },
   "dependencies": {
     "core-js": "^3.4.4",
+    "element-ui": "^2.13.0",
+    "maptalks": "^0.46.0",
     "vue": "^2.6.10"
   },
   "devDependencies": {
@@ -29,7 +31,14 @@
       "plugin:vue/essential",
       "eslint:recommended"
     ],
-    "rules": {},
+    "rules": {
+      "no-unused-vars": 0,
+      "vue/no-unused-components": 0,
+      "no-undef": 0,
+      "no-extra-semi": 0,
+      "no-useless-escape": 0,
+      "no-console": 0
+    },
     "parserOptions": {
       "parser": "babel-eslint"
     }
