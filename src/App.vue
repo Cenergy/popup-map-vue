@@ -1,18 +1,27 @@
 <template>
   <div id="app">
-    <HelloWorld />
+    <div>
+      <Portal to="right-basic">
+        <p class="red">
+          This is content from the left/top container (green). The cool part is,
+          it works across components, so you can send your content anywhere!
+        </p>
+      </Portal>
+    </div>
+    <transition name="router-fade" mode="out-in">
+      <keep-alive>
+        <router-view v-if="$route.meta.keepAlive"></router-view>
+      </keep-alive>
+    </transition>
+    <transition name="router-fade" mode="out-in">
+      <router-view v-if="!$route.meta.keepAlive"></router-view>
+    </transition>
   </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
-
-export default {
-  name: "app",
-  components: {
-    HelloWorld
-  }
-};
+import "mapbox-gl/dist/mapbox-gl.css";
+export default {};
 </script>
 
 <style>

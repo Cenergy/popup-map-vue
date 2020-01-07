@@ -5,8 +5,9 @@
 <script>
 import { Map, TileLayer } from "maptalks";
 import { getDevicePixelRatio } from "../utils/utils";
-import { showPopover } from "../Component/Popup";
+import * as components from "../components/";
 import mapboxgl from "mapbox-gl";
+import Vue from "vue";
 export default {
   mounted() {
     this.initMap();
@@ -34,18 +35,31 @@ export default {
       //   })
       //   // devicePixelRatio: 2
       // });
-      console.log(`Rd: initMap -> map`, map);
 
       const coordinates = map.getCenter().toArray();
-      console.log(`Rd: coordinates`, coordinates);
 
-      showPopover("image", map, {
-        coordinates,
-        width: 450,
-        // height: 400,
-        autoCenter: false,
-        hello: 123
+      const html = this.component2html({
+        component: components["image"],
+        data: { hello: 456789 }
       });
+      console.log(`Rd: html`, html);
+
+      const popover = new mapboxgl.Marker({
+        element: html,
+        anchor: "bottom"
+      })
+        .setLngLat(coordinates)
+        .addTo(map);
+    },
+    component2html(options) {
+      const { component = "", data = "" } = options;
+      if (!component) return;
+      const Template = Vue.extend(component);
+      const instance = new Template({
+        data,
+        el: document.createElement("div")
+      });
+      return instance.$el;
     }
   }
 };

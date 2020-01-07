@@ -1,5 +1,9 @@
 <template>
-  <div class="own-popup">123 ---{{hello}}</div>
+  <div class="own-popup">
+    123 ---{{ hello }}
+    <hr />
+    <PortalTarget name="right-basic"></PortalTarget>
+  </div>
 </template>
 
 <script>
