@@ -46,8 +46,8 @@ const defaultCallback = action => {
 
 // 创建实例
 const initInstance = data => {
-  console.log(`Rd: data`, data);
   instance = new Template({
+    store,
     data,
     el: document.createElement("div")
   });
